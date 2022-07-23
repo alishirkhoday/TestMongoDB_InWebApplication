@@ -1,0 +1,93 @@
+﻿@using TestMongoDB_InWebApplication.DomainModel.Entity
+
+@model List<Customer>
+
+<table id="ProductsTable" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>موبایل</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Family</td>
+                    <td>@customer.MobileNumber</td>
+                    <td>@customer.Id</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+     <script>
+        $(document).ready(function() {
+            var productsTable = $("#ProductsTable").DataTable
+                ({
+                    serverSide: true,
+                    ajax:
+                    {
+                        url: '@Url.Action("LoadProducts")',
+                        type: 'get'
+                    },
+                    columns:
+                    [
+                        {
+                            "data": "id",
+                            render: function(data, type, row, meta) {
+                                return PersianTools.digitsEnToFa(meta.row + meta.settings._iDisplayStart + 1);
+                            }
+                        },
+                        {
+                            "data": "productCode",orderable: false,
+                            render: function(data) {
+                                return PersianTools.digitsEnToFa(data);
+                            }
+                        },
+                        {
+                             "data": "productName",orderable: false
+                        },
+                        {
+                            "data": "productPrice",orderable: false,
+                            render: function(data) {
+                                return PersianTools.digitsEnToFa(PersianTools.addCommas(data));
+                            }
+                        },
+                        {
+                            "data": "id", orderable: false, render: function(data) {
+                                return `<a class="btn btn-primary btn-sm" href="">ویرایش</a>
+                                        <button data-id="${data}" class="btn btn-danger btn-sm btn-remove">حذف</button>`;
+                            }
+                        }
+                    ]
+                });
+            //$("#ProductsTable").on('click', '.btn-remove', function() {
+            //    var id = $(this).data("id");
+            //    if (confirm('Are you sure?')) {
+            //        remove(id);
+            //    }
+            //}
+            //);
+            //function remove(id) {
+            //    $.ajax({
+            //        url: '@Url.Action("RemoveProduct")',
+            //        type: 'post',
+            //        data: { id },
+            //        success: function(data) {
+            //            if (data.status === true) {
+            //                console.log('Deleted');
+            //                productsTable.ajax.reload();
+            //            }
+            //        }
+            //    });
+            //}
+        });
+        </Script>
+}

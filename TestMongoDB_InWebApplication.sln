@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMongoDB_InWebApplication.Web", "TestMongoDB_InWebApplication.Web\TestMongoDB_InWebApplication.Web.csproj", "{1ACDF691-E958-4DA4-9B46-F7072F092BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMongoDB_InWebApplication.DomainModel", "TestMongoDB_InWebApplication.DomainModel\TestMongoDB_InWebApplication.DomainModel.csproj", "{7D2AD9B2-AB4D-48F9-8EAF-519CDFC20595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMongoDB_InWebApplication.DataAccess", "TestMongoDB_InWebApplication.DataAccess\TestMongoDB_InWebApplication.DataAccess.csproj", "{11CB5377-59F4-461F-93B1-3BDFE3E971CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ACDF691-E958-4DA4-9B46-F7072F092BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ACDF691-E958-4DA4-9B46-F7072F092BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ACDF691-E958-4DA4-9B46-F7072F092BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ACDF691-E958-4DA4-9B46-F7072F092BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2AD9B2-AB4D-48F9-8EAF-519CDFC20595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2AD9B2-AB4D-48F9-8EAF-519CDFC20595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2AD9B2-AB4D-48F9-8EAF-519CDFC20595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2AD9B2-AB4D-48F9-8EAF-519CDFC20595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11CB5377-59F4-461F-93B1-3BDFE3E971CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11CB5377-59F4-461F-93B1-3BDFE3E971CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11CB5377-59F4-461F-93B1-3BDFE3E971CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11CB5377-59F4-461F-93B1-3BDFE3E971CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F646B91C-8CA6-4F73-A373-7CE376C73E61}
+	EndGlobalSection
+EndGlobal

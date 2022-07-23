@@ -1,0 +1,36 @@
+﻿@using TestMongoDB_InWebApplication.Web.Models.Customer
+
+@model AddCustomerModel
+
+<form class="row g-3" method="post">
+    <div class="" asp-validation-summary="All"></div>
+    <div class="col-md-6">
+        <label for="" class="form-label">نام</label>
+        <input asp-for="Name" type="text" class="form-control">
+        @*<span asp-validation-for="Name"></span>*@
+    </div>
+    <div class="col-md-6">
+        <label for="" class="form-label">نام خانوادگی</label>
+        <input asp-for="Family" type="text" class="form-control">
+        @*<span asp-validation-for="Family"></span>*@
+    </div>
+   
+    <div class="col-md-6">
+        <label for="" class="form-label">موبایل</label>
+        <input asp-for="MobileNumber" type="text" class="form-control">
+        @*<span asp-validation-for="MobileNumber"></span>*@
+    </div>
+    <div class="col-md-6">
+        <label for="" class="form-label">ایمیل</label>
+        <input asp-for="Email" type="email" class="form-control">
+        @*<span asp-validation-for="Email"></span>*@
+    </div>
+    <div class="">
+        <label for="" class="form-label">آدرس</label>
+        <input asp-for="Address" type="text" class="form-control">
+        @*<span asp-validation-for="Address"></span>*@
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary">ثبت</button>
+    </div>
+</form>
