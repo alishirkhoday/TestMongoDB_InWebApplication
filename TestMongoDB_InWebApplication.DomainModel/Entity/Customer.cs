@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using FluentValidation;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ namespace TestMongoDB_InWebApplication.DomainModel.Entity
         public string Name { get; set; }
         public string Family { get; set; }
         public string MobileNumber { get; set; }
+        //public List<MobileNumber> MobileNumber { get; set; }
+        //public MobileNumber MobileNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
     }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TestMongoDB_InWebApplication.DataAccess.UseMongoDB
 {
-    public class MongodbContext
-    {
-        public IMongoDatabase MongodbContext()
+    public static class MongodbContext
+    { 
+        public static IMongoDatabase Context()
         {
             var client = new MongoClient();
-            var db = client.GetDatabase("TestStore");
+            var db = client.GetDatabase("TestStore1");
             return db;
         }
     }

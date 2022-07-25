@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TestMongoDB_InWebApplication.DomainModel.Entity;
 
 namespace TestMongoDB_InWebApplication.Web.Models.Customer
 {

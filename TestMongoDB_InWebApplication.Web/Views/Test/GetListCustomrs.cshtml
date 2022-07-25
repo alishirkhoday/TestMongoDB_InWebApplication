@@ -2,7 +2,7 @@
 
 @model List<Customer>
 
-<table id="ProductsTable" class="table table-bordered table-striped">
+<table id="CustomersTable" class="table table-bordered table-striped">
     <thead>
         <tr>
             <th>نام</th>
@@ -25,18 +25,18 @@
         }
     </tbody>
 </table>
-@section Scripts
+@*@section Scripts
 {
      <script>
         $(document).ready(function() {
-            var productsTable = $("#ProductsTable").DataTable
+            var customersTable = $("#CustomersTable").DataTable
                 ({
-                    serverSide: true,
-                    ajax:
-                    {
-                        url: '@Url.Action("LoadProducts")',
-                        type: 'get'
-                    },
+                    //serverSide: true,
+                    //ajax:
+                    //{
+                    //    url: '@Url.Action("LoadCustomers")',
+                    //    type: 'get'
+                    //},
                     columns:
                     [
                         {
@@ -46,16 +46,13 @@
                             }
                         },
                         {
-                            "data": "productCode",orderable: false,
-                            render: function(data) {
-                                return PersianTools.digitsEnToFa(data);
-                            }
+                            "data": "name",orderable: false,
                         },
                         {
-                             "data": "productName",orderable: false
+                             "data": "family",orderable: false
                         },
                         {
-                            "data": "productPrice",orderable: false,
+                            "data": "mobileNumber",orderable: false,
                             render: function(data) {
                                 return PersianTools.digitsEnToFa(PersianTools.addCommas(data));
                             }
@@ -68,7 +65,7 @@
                         }
                     ]
                 });
-            //$("#ProductsTable").on('click', '.btn-remove', function() {
+            //$("#CustomersTable").on('click', '.btn-remove', function() {
             //    var id = $(this).data("id");
             //    if (confirm('Are you sure?')) {
             //        remove(id);
@@ -77,17 +74,17 @@
             //);
             //function remove(id) {
             //    $.ajax({
-            //        url: '@Url.Action("RemoveProduct")',
+            //        url: '@Url.Action("RemoveCustomer")',
             //        type: 'post',
             //        data: { id },
             //        success: function(data) {
             //            if (data.status === true) {
             //                console.log('Deleted');
-            //                productsTable.ajax.reload();
+            //                customersTable.ajax.reload();
             //            }
             //        }
             //    });
             //}
         });
-        </Script>
-}
+    </Script>
+}*@
