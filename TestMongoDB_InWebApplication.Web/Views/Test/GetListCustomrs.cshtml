@@ -18,73 +18,18 @@
                 <tr>
                     <td>@customer.Name</td>
                     <td>@customer.Family</td>
-                    <td>@customer.MobileNumber</td>
-                    <td>@customer.Id</td>
+                    <td>@customer.MobileNumber.Value</td>
+                    <td>
+                    <a class="btn btn-primary btn-sm" href="">ویرایش</a>
+                    <button id="RemoveCustomer" data-id="@customer.Id" class="btn btn-danger btn-sm btn-remove">حذف</button>
+                    </td>
                 </tr>
             }
         }
     </tbody>
 </table>
-@*@section Scripts
+
+@section Scripts
 {
-     <script>
-        $(document).ready(function() {
-            var customersTable = $("#CustomersTable").DataTable
-                ({
-                    //serverSide: true,
-                    //ajax:
-                    //{
-                    //    url: '@Url.Action("LoadCustomers")',
-                    //    type: 'get'
-                    //},
-                    columns:
-                    [
-                        {
-                            "data": "id",
-                            render: function(data, type, row, meta) {
-                                return PersianTools.digitsEnToFa(meta.row + meta.settings._iDisplayStart + 1);
-                            }
-                        },
-                        {
-                            "data": "name",orderable: false,
-                        },
-                        {
-                             "data": "family",orderable: false
-                        },
-                        {
-                            "data": "mobileNumber",orderable: false,
-                            render: function(data) {
-                                return PersianTools.digitsEnToFa(PersianTools.addCommas(data));
-                            }
-                        },
-                        {
-                            "data": "id", orderable: false, render: function(data) {
-                                return `<a class="btn btn-primary btn-sm" href="">ویرایش</a>
-                                        <button data-id="${data}" class="btn btn-danger btn-sm btn-remove">حذف</button>`;
-                            }
-                        }
-                    ]
-                });
-            //$("#CustomersTable").on('click', '.btn-remove', function() {
-            //    var id = $(this).data("id");
-            //    if (confirm('Are you sure?')) {
-            //        remove(id);
-            //    }
-            //}
-            //);
-            //function remove(id) {
-            //    $.ajax({
-            //        url: '@Url.Action("RemoveCustomer")',
-            //        type: 'post',
-            //        data: { id },
-            //        success: function(data) {
-            //            if (data.status === true) {
-            //                console.log('Deleted');
-            //                customersTable.ajax.reload();
-            //            }
-            //        }
-            //    });
-            //}
-        });
-    </Script>
-}*@
+     <script></Script>
+}

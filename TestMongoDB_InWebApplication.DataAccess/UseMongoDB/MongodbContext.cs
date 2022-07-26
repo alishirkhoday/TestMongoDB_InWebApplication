@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TestMongoDB_InWebApplication.DataAccess.UseMongoDB
 {
     public static class MongodbContext
-    { 
+    {
         public static IMongoDatabase Context()
         {
             var client = new MongoClient();

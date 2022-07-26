@@ -14,7 +14,7 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
         private List<MobileNumber> _mobileNumbers;
         public TestController()
         {
-            _mobileNumbers = new List<MobileNumber>();   
+            _mobileNumbers = new List<MobileNumber>();
         }
 
         [HttpGet]
@@ -29,10 +29,13 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
             if (ModelState.IsValid)
             {
                 Customer customer = new Customer();
-                //MobileNumber mobileNumber = new MobileNumber();
+                MobileNumber mobile = new MobileNumber();
                 customer.Name = addCustomerModel.Name;
                 customer.Family = addCustomerModel.Family;
-                customer.MobileNumber = addCustomerModel.MobileNumber;
+                customer.MobileNumber = new MobileNumber
+                {
+                    Value = addCustomerModel.MobileNumber
+                };
                 customer.Email = addCustomerModel.Email;
                 customer.Address = addCustomerModel.Address;
                 CustomerValidator validator = new CustomerValidator();
@@ -41,9 +44,13 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
                 {
                     var customerCollection = MongodbContext.Context().GetCollection<Customer>("Customers");
                     //var mobileNumberCollection = MongodbContext.Context().GetCollection<Customer>("MobileNumber");
-                    var checkCustomer = customerCollection.AsQueryable().Any(c => c.MobileNumber == addCustomerModel.MobileNumber);
+                    var checkCustomer = customerCollection
+                        .AsQueryable()
+                        .Any(c => c.MobileNumber.Value == addCustomerModel.MobileNumber);
                     var checkCustomer1 = customerCollection.AsQueryable().Any(c => c.Email == addCustomerModel.Email);
-                    if (!checkCustomer&&!checkCustomer1)
+                    if (!checkCustomer
+                        //&& !checkCustomer1
+                        )
                     {
                         customerCollection.InsertOne(customer);
                         return RedirectToAction("Add");
@@ -51,9 +58,9 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
                 }
                 else
                 {
-                    foreach (var failure in results.Errors)
+                    foreach (var item in results.Errors)
                     {
-                        return Content("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                        return Content("Property " + item.PropertyName + " failed validation. Error was: " + item.ErrorMessage);
                     }
                 }
             }

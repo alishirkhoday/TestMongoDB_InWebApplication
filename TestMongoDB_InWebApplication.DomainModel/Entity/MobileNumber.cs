@@ -10,9 +10,6 @@ namespace TestMongoDB_InWebApplication.DomainModel.Entity
 {
     public class MobileNumber
     {
-        //[BsonId]
-        //[BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
         public string Value { get; set; }
     }
 }
