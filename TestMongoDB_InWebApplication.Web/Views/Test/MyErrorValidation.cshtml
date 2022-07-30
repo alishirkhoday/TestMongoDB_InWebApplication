@@ -1,0 +1,15 @@
+﻿@using FluentValidation.Results
+@using TestMongoDB_InWebApplication.DomainModel.Entity
+@using TestMongoDB_InWebApplication.DomainModel.Validator
+
+@{
+    Customer customer = new Customer();
+    CustomerValidator validator = new();
+    ValidationResult results = validator.Validate(customer);
+    foreach (var item in results.Errors)
+    {
+        <ul>
+            <li>@("مشخصه " + item.PropertyName + " اعتبار سنجی ناموفق. خطا بود: " + item.ErrorMessage)</li>
+        </ul>
+    }
+}

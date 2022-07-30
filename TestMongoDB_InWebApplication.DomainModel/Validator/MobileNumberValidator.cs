@@ -12,8 +12,9 @@ namespace TestMongoDB_InWebApplication.DomainModel.Validator
     {
         public MobileNumberValidator()
         {
-            RuleFor(m => m.Value).NotEmpty().WithMessage("لطفا موبایل مشتری را وارد کنید").Length(11);
-            RuleFor(m => m.Value).Length(11).WithMessage("لطفا موبایل را صحیح وارد کنید");
+            RuleFor(m => m.Value)
+                .NotEmpty().WithMessage("لطفا موبایل مشتری را وارد کنید")
+                .Length(11).WithMessage("لطفا موبایل را صحیح وارد کنید");
         }
     }
 }

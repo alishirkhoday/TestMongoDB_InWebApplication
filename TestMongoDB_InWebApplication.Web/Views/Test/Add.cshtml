@@ -1,20 +1,35 @@
-﻿@using TestMongoDB_InWebApplication.Web.Models.Customer
+﻿@using FluentValidation.Results
+@using TestMongoDB_InWebApplication.DomainModel.Entity
+@using TestMongoDB_InWebApplication.DomainModel.Validator
+@using TestMongoDB_InWebApplication.Web.Models.Customer
 
 @model AddCustomerModel
-
+@{
+    Customer customer = new Customer();
+    CustomerValidator validations = new CustomerValidator();
+    ValidationResult results = validations.Validate(customer);
+}
 <form class="row g-3" method="post">
-    <div class="" asp-validation-summary="All"></div>
+    @*   <div class="" asp-validation-summary="All"></div>*@
     <div class="col-md-6">
         <label for="" class="form-label">نام</label>
         <input asp-for="Name" type="text" class="form-control">
         @*<span asp-validation-for="Name"></span>*@
+        <span>
+            @{
+                var s = results
+                .Errors
+                .Select(x => x.ErrorMessage)
+                .ToList();
+            }
+        </span>
     </div>
     <div class="col-md-6">
         <label for="" class="form-label">نام خانوادگی</label>
         <input asp-for="Family" type="text" class="form-control">
         @*<span asp-validation-for="Family"></span>*@
     </div>
-   
+
     <div class="col-md-6">
         <label for="" class="form-label">موبایل</label>
         <input asp-for="MobileNumber" type="text" class="form-control">

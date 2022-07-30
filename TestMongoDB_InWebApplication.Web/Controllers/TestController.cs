@@ -26,44 +26,44 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
         [HttpPost]
         public IActionResult Add(AddCustomerModel addCustomerModel)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            Customer customer = new Customer();
+            MobileNumber mobile = new MobileNumber();
+            customer.Name = addCustomerModel.Name;
+            customer.Family = addCustomerModel.Family;
+            customer.MobileNumber = new MobileNumber
             {
-                Customer customer = new Customer();
-                MobileNumber mobile = new MobileNumber();
-                customer.Name = addCustomerModel.Name;
-                customer.Family = addCustomerModel.Family;
-                customer.MobileNumber = new MobileNumber
+                Value = addCustomerModel.MobileNumber
+            };
+            customer.Email = addCustomerModel.Email;
+            customer.Address = addCustomerModel.Address;
+            CustomerValidator validator = new();
+            ValidationResult results = validator.Validate(customer);
+            if (results.IsValid)
+            {
+                var customerCollection = MongodbContext.Context().GetCollection<Customer>("Customers");
+                //var mobileNumberCollection = MongodbContext.Context().GetCollection<Customer>("MobileNumber");
+                var checkCustomer = customerCollection.AsQueryable().Any(c => c.MobileNumber.Value == addCustomerModel.MobileNumber);
+                var checkCustomer1 = customerCollection.AsQueryable().Any(c => c.Email == addCustomerModel.Email);
+                if (!checkCustomer
+                    //&& !checkCustomer1
+                    )
                 {
-                    Value = addCustomerModel.MobileNumber
-                };
-                customer.Email = addCustomerModel.Email;
-                customer.Address = addCustomerModel.Address;
-                CustomerValidator validator = new CustomerValidator();
-                ValidationResult results = validator.Validate(customer);
-                if (results.IsValid)
-                {
-                    var customerCollection = MongodbContext.Context().GetCollection<Customer>("Customers");
-                    //var mobileNumberCollection = MongodbContext.Context().GetCollection<Customer>("MobileNumber");
-                    var checkCustomer = customerCollection
-                        .AsQueryable()
-                        .Any(c => c.MobileNumber.Value == addCustomerModel.MobileNumber);
-                    var checkCustomer1 = customerCollection.AsQueryable().Any(c => c.Email == addCustomerModel.Email);
-                    if (!checkCustomer
-                        //&& !checkCustomer1
-                        )
-                    {
-                        customerCollection.InsertOne(customer);
-                        return RedirectToAction("Add");
-                    }
-                }
-                else
-                {
-                    foreach (var item in results.Errors)
-                    {
-                        return Content("Property " + item.PropertyName + " failed validation. Error was: " + item.ErrorMessage);
-                    }
+                    customerCollection.InsertOne(customer);
+                    return RedirectToAction("Add");
                 }
             }
+            else
+            {
+                //foreach (var item in results.Errors)
+                //{
+                //return Content("Property " + item.PropertyName + " failed validation. Error was: " + item.ErrorMessage);
+                //}
+                return View("MyErrorValidation");
+               // return View();
+            }
+            //}
             return View(addCustomerModel);
         }
 
