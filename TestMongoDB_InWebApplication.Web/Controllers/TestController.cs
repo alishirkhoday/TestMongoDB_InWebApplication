@@ -14,7 +14,12 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
         private List<MobileNumber> _mobileNumbers;
         public TestController()
         {
-            _mobileNumbers = new List<MobileNumber>();
+            _mobileNumbers = new List<MobileNumber>
+            {
+                new MobileNumber { Value = "09308336840" }
+            ,
+                new MobileNumber { Value = "09123456789" }
+            };
         }
 
         [HttpGet]
@@ -26,16 +31,13 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
         [HttpPost]
         public IActionResult Add(AddCustomerModel addCustomerModel)
         {
-            //if (ModelState.IsValid)
-            //{
             Customer customer = new Customer();
             MobileNumber mobile = new MobileNumber();
             customer.Name = addCustomerModel.Name;
             customer.Family = addCustomerModel.Family;
-            customer.MobileNumber = new MobileNumber
-            {
-                Value = addCustomerModel.MobileNumber
-            };
+            customer.BirthDate = addCustomerModel.BirthDate;
+            customer.Age = addCustomerModel.Age;
+            customer.MobileNumbers = _mobileNumbers;
             customer.Email = addCustomerModel.Email;
             customer.Address = addCustomerModel.Address;
             CustomerValidator validator = new();
@@ -44,26 +46,27 @@ namespace TestMongoDB_InWebApplication.Web.Controllers
             {
                 var customerCollection = MongodbContext.Context().GetCollection<Customer>("Customers");
                 //var mobileNumberCollection = MongodbContext.Context().GetCollection<Customer>("MobileNumber");
-                var checkCustomer = customerCollection.AsQueryable().Any(c => c.MobileNumber.Value == addCustomerModel.MobileNumber);
-                var checkCustomer1 = customerCollection.AsQueryable().Any(c => c.Email == addCustomerModel.Email);
-                if (!checkCustomer
-                    //&& !checkCustomer1
-                    )
-                {
+                //var checkCustomerMobileNumber = customerCollection.AsQueryable().Any(c => c.MobileNumbers == addCustomerModel.MobileNumber);
+                //var checkCustomerEmail = customerCollection.AsQueryable().Any(c => c.Email == addCustomerModel.Email);
+                //if (
+                //    !checkCustomerMobileNumber
+                //    &&
+                //    !checkCustomerEmail
+                //    )
+                //{
                     customerCollection.InsertOne(customer);
-                    return RedirectToAction("Add");
-                }
+                    //return RedirectToAction("Add");
+                //}
             }
             else
             {
-                //foreach (var item in results.Errors)
-                //{
-                //return Content("Property " + item.PropertyName + " failed validation. Error was: " + item.ErrorMessage);
-                //}
-                return View("MyErrorValidation");
-               // return View();
+                foreach (var item in results.Errors)
+                {
+                    return Content("Property " + item.PropertyName + " failed validation. Error was: " + item.ErrorMessage);
+                }
+                //return View("MyErrorValidation");
+                return View();
             }
-            //}
             return View(addCustomerModel);
         }
 

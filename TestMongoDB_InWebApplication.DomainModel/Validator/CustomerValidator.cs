@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestMongoDB_InWebApplication.DomainModel.Entity;
+using TestMongoDB_InWebApplication.DomainModel.Validator;
 
 namespace TestMongoDB_InWebApplication.DomainModel.Validator
 {
@@ -14,18 +15,14 @@ namespace TestMongoDB_InWebApplication.DomainModel.Validator
         {
             //RuleFor(customer => customer.Id).NotEmpty();
             RuleFor(customer => customer.Name)
-                .NotEmpty().WithMessage("لطفا نام مشتری را وارد کنید");
-            RuleFor(customer => customer.Family)
-                .NotEmpty().WithMessage("لطفا نام نام خانوادگی مشتری را وارد کنید");
-            RuleFor(customer => customer.MobileNumber)
-                .SetValidator(new MobileNumberValidator());
-            RuleFor(customer => customer.Email)
-                .NotEmpty().WithMessage("لطفا ایمیل مشتری را وارد کنید")
-                .EmailAddress()
-                .MaximumLength(150);
-            RuleFor(customer => customer.Address)
-                .MaximumLength(1000);
-        }
+                .NotEmpty().WithMessage("لطفا نام مشتری را وارد کنید")
+                ;
+            
+            //RuleFor(a => a.MobileNumbers).Must()
+            //RuleFor(a => a.Name).test();
+            //RuleFor(a=>a.Email).element
+            //RuleFor(a => a.Age).element();
 
+        }
     }
 }

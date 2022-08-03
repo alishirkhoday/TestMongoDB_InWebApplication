@@ -18,7 +18,7 @@
                 <tr>
                     <td>@customer.Name</td>
                     <td>@customer.Family</td>
-                    <td>@customer.MobileNumber.Value</td>
+                    <td>@customer.MobileNumbers.SingleOrDefault()</td>
                     <td>
                     <a class="btn btn-primary btn-sm" href="">ویرایش</a>
                     <button id="RemoveCustomer" data-id="@customer.Id" class="btn btn-danger btn-sm btn-remove">حذف</button>

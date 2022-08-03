@@ -15,21 +15,22 @@
         <label for="" class="form-label">نام</label>
         <input asp-for="Name" type="text" class="form-control">
         @*<span asp-validation-for="Name"></span>*@
-        <span>
-            @{
-                var s = results
-                .Errors
-                .Select(x => x.ErrorMessage)
-                .ToList();
-            }
-        </span>
     </div>
     <div class="col-md-6">
         <label for="" class="form-label">نام خانوادگی</label>
         <input asp-for="Family" type="text" class="form-control">
         @*<span asp-validation-for="Family"></span>*@
     </div>
-
+    <div class="col-md-6">
+        <label for="" class="form-label">تاریخ تولد</label>
+        <input asp-for="BirthDate" type="date" class="form-control">
+        @*<span asp-validation-for="Name"></span>*@
+    </div>
+    <div class="col-md-6">
+        <label for="" class="form-label">سن</label>
+        <input asp-for="Age" type="number" class="form-control">
+        @*<span asp-validation-for="Name"></span>*@
+    </div>
     <div class="col-md-6">
         <label for="" class="form-label">موبایل</label>
         <input asp-for="MobileNumber" type="text" class="form-control">
