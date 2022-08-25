@@ -1,6 +1,5 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using TestMongoDB_InWebApplication.DataAccess.UseMongoDB;
 using TestMongoDB_InWebApplication.DomainModel.Entity;
